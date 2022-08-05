@@ -1,0 +1,49 @@
+.nav {
+  background-color: var(--surface-ground);
+  padding: 10px;
+}
+.wrapper {
+  margin-top: 20px;
+  background-color: var(--surface-ground);
+  padding: 50px;
+  border-radius: 10px;
+  overflow: hidden;
+
+  .filter1 {
+    text-align: right;
+    margin-bottom: 20px;
+  }
+
+  .filter2 {
+    display: flex;
+    margin-bottom: 20px;
+    justify-content: right;
+    button {
+      height: 50px;
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  #post-by {
+    font-size: 12px;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  p-autocomplete {
+    max-width: 35%;
+  }
+  p-dropdown {
+    margin-left: 20px;
+  }
+  .filter1 {
+    text-align: center;
+
+    button {
+      width: 90%;
+      margin-bottom: 10px;
+      height: 50px;
+    }
+  }
+}

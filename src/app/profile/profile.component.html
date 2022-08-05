@@ -1,0 +1,92 @@
+<app-navbar></app-navbar>
+<div *ngIf="isLoading" style="text-align: center">
+    <app-loading-spinner></app-loading-spinner>
+</div>
+<div *ngIf="!isLoading">
+    <div class="container wrapper">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="info">
+                    <img src="assets/images/profile.png" class="pic" alt="">
+                    <p>{{currentUser.email}}</p>
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <p-card header="About">
+                        <p id="bio">I’m living the dream.
+
+                            I’ve always been a great problem solver, an independent introvert, and a technophile
+                            obsessed
+                            with
+                            the latest devices. Today, I’m working from home as a software engineer for CodeCorp, Inc.,
+                            and
+                            I
+                            get to show off all these elements of who I am.
+
+                            I started learning to code when I was a teenager, though it was always more of a hobby than
+                            a
+                            career
+                            focus. After a college education in Psychology, and continuing to pursue that hobby, I
+                            realized
+                            software engineering was the right field for me.
+
+                            Since then, I’ve worked on countless freelance projects and have been involved with a
+                            handful of
+                            notable startups. Today, I’m working as a junior developer with the amazing team at
+                            CodeCorp,
+                            Inc.,
+                            and am getting into machine learning on my own time.
+
+                            I’m familiar with a variety of programming languages, including JavaScript, HTML, CSS,
+                            Python,
+                            Ruby,
+                            jQuery, and AngularJS, but I’m always adding new skills to my repertoire. I’m also eager to
+                            meet
+                            other software engineers in the area, so feel free to connect!</p>
+                    </p-card>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div style="margin-bottom: 20px;">
+                    <p-card header="Applied Jobs">
+                        <div *ngFor="let job of jobs | filter: 'Applied'">
+                            <p-accordion>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <p-accordionTab header={{job.title}} style="width: 100%; margin-right: 20px;">
+                                        <p> {{job.description}}</p>
+                                        <br>
+                                        <p>Wage: {{job.wage | wageCurrency}}</p>
+                                        <p id="post-by"><b> Posted by: </b><i>{{job.offer.email}}</i></p>
+                                        <app-applied-job [job]="job"></app-applied-job>
+                                    </p-accordionTab>
+                                </div>
+                            </p-accordion>
+                        </div>
+                        <ng-container *ngIf="(jobs | filter : 'Applied').length === 0">
+                            <p>You have not applied to any jobs.</p>
+                        </ng-container>
+                    </p-card>
+                </div>
+                <div>
+                    <p-card header="Favorite Jobs">
+                        <div *ngFor="let job of jobs | filter: 'Favorite';">
+                            <p-accordion>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <p-accordionTab header={{job.title}} style="width: 100%; margin-right: 20px;">
+                                        <p> {{job.description}}</p>
+                                        <br>
+                                        <p>Wage: {{job.wage | wageCurrency}} </p>
+                                        <p id="post-by"><b> Posted by: </b><i>{{job.offer.email}}</i></p>
+                                        <app-applied-job [job]="job"></app-applied-job>
+                                    </p-accordionTab>
+                                    <app-favorite-job [job]="job"></app-favorite-job>
+                                </div>
+                            </p-accordion>
+                        </div>
+                        <ng-container *ngIf="(jobs | filter : 'Favorite').length === 0">
+                            <p>You have no favorite Jobs.</p>
+                        </ng-container>
+                    </p-card>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,111 @@
+<div class="nav">
+    <div class="d-flex justify-content-between container" style="width: 100%;">
+        <img src="assets/images/logo.png" width="300px" alt="" [routerLink]="['/home']" style="cursor: pointer;">
+        <button pButton label="Log Out" icon="pi pi-sign-out" (click)="logOut()" class="p-button-danger"
+            style=" width: 150px; margin-left: 20px;"></button>
+    </div>
+</div>
+<div *ngIf="isLoading" style="text-align: center">
+    <app-loading-spinner></app-loading-spinner>
+</div>
+<div *ngIf="!isLoading">
+    <div class="wrapper container">
+        <div class="row">
+            <div class="col">
+                <h2>Dashboard</h2>
+                <div class="d-flex justify-content-between align-items-center" style="margin-bottom: 20px;">
+                    <p>Welcome! You can create, edit, update and delete you job
+                        postings here!</p>
+                </div>
+            </div>
+            <div>
+                <p-table #dt [value]="jobs" dataKey="id" [rows]="10" [showCurrentPageReport]="true"
+                    [rowsPerPageOptions]="[10,25,50]" styleClass="p-datatable-customers p-datatable-gridlines"
+                    [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                    [globalFilterFields]="['title']">
+                    <ng-template pTemplate="caption">
+                        <div class="d-block header">
+                            <h4>Your postings</h4>
+                            <div class="search-add">
+                                <div class="p-d-flex">
+                                    <span class="p-input-icon-left p-ml-auto">
+                                        <i class="pi pi-search"></i>
+                                        <input pInputText type="text" (input)="applyFilterGlobal($event)"
+                                            placeholder="Search position" />
+                                    </span>
+                                </div>
+                                <button pButton type="button" (click)="showDialog()" icon="pi pi-plus" label="Add Job"
+                                    class="p-button-success" style="margin-left: 20px;"></button>
+                                <p-dialog header="{{openEdit ? 'Edit Job Post' : 'Add Job Post'}}" [(visible)]="display"
+                                    [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '50vw'}">
+                                    <app-create-edit-job-posting (addedJob)="handleJob($event)"
+                                        (openModal)="showModal($event)" [object]="selectedJobPost">
+                                    </app-create-edit-job-posting>
+                                </p-dialog>
+                            </div>
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th pSortableColumn="position" field="position">
+                                <div class="p-d-flex p-jc-between p-ai-center">
+                                    Position
+                                </div>
+                            </th>
+                            <th>
+                                <div class="p-d-flex p-jc-between p-ai-center">
+                                    Description
+                                </div>
+                            </th>
+                            <th>
+                                <div class="p-d-flex p-jc-between p-ai-center">
+                                    Wage
+                                </div>
+                            </th>
+                            <th>
+                                <div class="p-d-flex p-jc-between p-ai-center">
+                                    Applied
+                                </div>
+                            </th>
+                            <th>
+                            </th>
+                            <th>
+                            </th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-job>
+                        <tr>
+                            <td field="title">
+                                {{job.title}}
+                            </td>
+                            <td>
+                                <p>{{job.description}}</p>
+                            </td>
+                            <td>
+                                {{job.wage | wageCurrency}}
+                            </td>
+                            <td>
+                                {{job.appliedBy | getNoApplications}}
+                            </td>
+                            <td>
+                                <button pButton pRipple type="button" icon="pi pi-pencil" (click)="editJob(job)"
+                                    class="p-button-warning p-button-outlined" style="margin: 0;"></button>
+                            </td>
+                            <td>
+                                <button pButton pRipple type="button" icon="pi pi-trash" (click)="confirm(job)"
+                                    class="p-button-danger p-button-outlined"></button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="emptymessage">
+                        <tr>
+                            <td colspan="7">No jobs found.</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+    </div>
+</div>
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+<p-toast key="deleteToast" position="top-left"></p-toast>

@@ -1,0 +1,67 @@
+<div *ngIf="isLoading" style="text-align: center">
+    <app-loading-spinner></app-loading-spinner>
+</div>
+<div *ngIf="!isLoading">
+    <div class="nav">
+        <div class="container">
+            <img src="assets/images/logo.png" width="300px" alt="" [routerLink]="['/home']" style="cursor: pointer;">
+        </div>
+    </div>
+    <div class="wrapper container">
+        <div class="container par">
+            <p> <b> Sign up now</b> to discover the latest job postings all over the world. Be part of our community
+                where
+                both job seekers and job offers are able to give each other a chance. Do you also want to be part? Hurry
+                up
+                and sign up. </p>
+        </div>
+        <div class="signup-card">
+            <p-card>
+                <h3><b>Sign Up</b></h3>
+                <p>Create your new account.</p>
+                <form [formGroup]="signupForm" (ngSubmit)="signUp()" *ngIf="!isLoading">
+                    <div class="grid p-fluid">
+                        <br>
+                        <div class="col-12 md:col-4">
+                            <div class="p-inputgroup">
+                                <span class="p-inputgroup-addon"><i class="pi pi-envelope"></i></span>
+                                <input type="text" id="email" pInputText placeholder="Email" formControlName="email">
+                            </div>
+                            <small *ngIf="signupForm.controls['email'].invalid 
+                                && (signupForm.controls['email'].dirty 
+                                || signupForm.controls['email'].touched)" class="alert">
+                                Please enter a valid email
+                            </small>
+                        </div>
+                        <br>
+                        <div class="col-12 md:col-4">
+                            <div class="p-inputgroup">
+                                <span class="p-inputgroup-addon"><i class="pi pi-unlock"></i></span>
+                                <input type="password" pInputText placeholder="Password" formControlName="password">
+                            </div>
+                            <small *ngIf="signupForm.controls['password'].invalid 
+                                && (signupForm.controls['password'].dirty 
+                                || signupForm.controls['password'].touched)" class="alert">
+                                Please enter a valid password. Password must have
+                                only letters and numbers and
+                                minimum of 8 characters.
+                            </small>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="d-flex justify-content-evenly">
+                        <p-radioButton name="role" value="seeker" label="Job Seeker" formControlName="role">
+                        </p-radioButton>
+                        <p-radioButton name="role" value="offer" label="Job Offer" formControlName="role">
+                        </p-radioButton>
+                    </div>
+                    <br>
+                    <button pButton type="submit" label="Sign Up" class="p-button-success"
+                        [disabled]="!signupForm.valid"></button>
+                    <p>Already have an account? Log in <a routerLink="/login"> here</a></p>
+                </form>
+            </p-card>
+        </div>
+    </div>
+</div>
+<p-toast key="signupToast" position="top-left"></p-toast>

@@ -1,0 +1,40 @@
+.nav {
+  background-color: var(--surface-ground);
+  padding: 10px;
+}
+
+.wrapper {
+  margin-top: 30px;
+  background-color: var(--surface-ground);
+  padding: 50px;
+  border-radius: 10px;
+  overflow: hidden;
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .search-add {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+}
+
+@media only screen and (max-width: 961px) {
+  p-table {
+    display: flex;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .header {
+    display: block;
+    input {
+      width: 95%;
+    }
+  }
+  button {
+    height: 55px;
+  }
+}

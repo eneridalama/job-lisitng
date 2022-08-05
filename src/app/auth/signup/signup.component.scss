@@ -1,0 +1,49 @@
+.nav {
+  background-color: var(--surface-ground);
+  padding: 10px;
+}
+
+.wrapper {
+  margin-top: 20px;
+  background-color: var(--surface-ground);
+  padding: 50px;
+  border-radius: 10px;
+  button {
+    width: 100%;
+  }
+  .signup-card {
+    margin: auto;
+    width: 600px;
+    border-radius: 10px;
+  }
+  .par {
+    width: 900px;
+    font-size: 20px;
+    letter-spacing: 1px;
+    text-align: center;
+  }
+  small {
+    color: #e24c4c;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .par {
+    max-width: 90%;
+  }
+  .signup-card {
+    width: 90%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .signup-card {
+    max-width: 90%;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .signup-card {
+    max-width: 100%;
+  }
+}

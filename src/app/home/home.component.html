@@ -1,0 +1,57 @@
+<app-navbar></app-navbar>
+<div *ngIf="isLoading" style="text-align: center">
+    <app-loading-spinner></app-loading-spinner>
+</div>
+<div>
+    <div class="container wrapper">
+        <div>
+            <h2>Job Offers</h2>
+            <p style="width: 90%;">Hello! This app will help you get a job faster.
+                Explore all the opportunities! Apply for jobs now and save your favorite ones.</p>
+        </div>
+        <div class="filter1">
+            <div class="filter2">
+                <p-autoComplete [(ngModel)]="selectedJobPostingTitle" [showEmptyMessage]="true"
+                    [suggestions]="filteredJobPostingsTitle" (completeMethod)="filterJobsinAutocomplete($event)"
+                     placeholder="Search position" [minLength]="1" class="autocomplete">
+                </p-autoComplete>
+                <div style="margin-left: 20px;">
+                    <p-dropdown [options]="wageInterval" placeholder="Wage" optionLabel="name"
+                        pTooltip="Select minimum wage." tooltipPosition="top" [showClear]="true"
+                        (onChange)="selectWage($event)" class="dropdown"></p-dropdown>
+                </div>
+            </div>
+            <div class="buttons">
+                <button pButton type="button" label="Filter" (click)="getFilteredJobs()" class="p-button-success"
+                    style="margin-left: 20px;"></button>
+                <ng-container *ngIf="isReset">
+                    <button pButton type="button" label="Reset" (click)="resetFilter()" class="p-button-danger"
+                        style="margin-left: 20px;"></button>
+                </ng-container>
+            </div>
+        </div>
+        <div *ngIf="!isLoading">
+            <ng-container *ngFor="let job of jobs">
+                <p-card>
+                    <p-accordion>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <p-accordionTab header={{job.title}} style="width: 100%; margin-right: 20px;">
+                                <p> {{job.description}}</p>
+                                <p-divider></p-divider>
+                                <p>Wage: {{job.wage | wageCurrency}}</p>
+                                <br>
+                                <p id="post-by"> <b> Posted by:</b><i> {{job.offer.email}}</i></p>
+                                <div style="text-align: right;">
+                                    <app-applied-job [job]="job"></app-applied-job>
+                                </div>
+                            </p-accordionTab>
+                            <app-favorite-job [job]="job"></app-favorite-job>
+                        </div>
+                    </p-accordion>
+                </p-card>
+                <br>
+            </ng-container>
+        </div>
+    </div>
+</div>
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>

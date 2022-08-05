@@ -1,0 +1,14 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+@import "../node_modules/primeng/resources/themes/lara-light-blue/theme.css";
+
+body {
+  background-color: #c3dae9;
+background-image: linear-gradient(135deg, #bdd8ea 0%, #c6c7ea 100%);
+}
+
+h1, h2, h3, h4, h5{
+  color: var(--text-color);
+}
