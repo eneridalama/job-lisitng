@@ -1,7 +1,7 @@
 import { UserClass, UserEntity } from './user.model';
 
 export interface JobPostingEntity {
-  id: string | undefined;
+  id: string;
   title: string;
   description: string;
   offer: UserEntity;

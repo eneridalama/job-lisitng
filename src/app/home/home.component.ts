@@ -95,7 +95,6 @@ export class HomeComponent implements OnInit {
     this.fetchJobs();
   }
 
-
   logOut() {
     this.authService.logOut();
   }

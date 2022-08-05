@@ -60,7 +60,6 @@ export class DashboardComponent implements OnInit {
       .addJob(job)
       .pipe(tap((_) => this.fetchJobs()))
       .subscribe();
-    this.fetchJobs();
   }
 
   editJob(job: JobPostingEntity) {

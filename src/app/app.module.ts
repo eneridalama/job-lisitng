@@ -15,7 +15,7 @@ import { FavoriteJobComponent } from './home/favorite-job/favorite-job.component
 import { ProfileComponent } from './profile/profile.component';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { AppliedJobComponent } from './home/applied-job/applied-job.component';
-import { NavbarComponent } from './navbar/navbar.component';
+import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
