@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { JobPostingEntity } from 'src/app/core/models/job.model';
+import { JobPostingClass, JobPostingEntity } from 'src/app/core/models/job.model';
 import { JobService } from 'src/app/core/services/job.service';
 
 @Component({
@@ -18,7 +18,7 @@ import { JobService } from 'src/app/core/services/job.service';
 export class AppliedJobComponent implements OnInit {
   checked: boolean = true;
   currentUser = JSON.parse(localStorage.getItem('user')!);
-  @Input() job!: JobPostingEntity;
+  @Input() job: JobPostingEntity = new JobPostingClass;
 
   constructor(private jobService: JobService) {}
 

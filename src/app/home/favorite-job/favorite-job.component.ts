@@ -34,7 +34,7 @@ export class FavoriteJobComponent implements OnInit {
   favorite() {
     this.isFavorite = !this.isFavorite;
     if (this.isFavorite == true) {
-      if (this.job.favoritedBy != undefined) {
+      if (this.job.favoritedBy) {
         this.job.favoritedBy.push(this.currentUser);
         this.jobService.updateJob(this.job);
       }

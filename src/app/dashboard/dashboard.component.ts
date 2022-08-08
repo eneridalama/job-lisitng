@@ -77,7 +77,7 @@ export class DashboardComponent implements OnInit {
       .deleteJob(job.id!)
       .pipe(
         tap((_) => {
-          this.jobs = this.jobs.filter((item) => item.id != job.id);
+          this.fetchJobs();
           this.utils.showMessage(
             'deleteToast',
             'success',
